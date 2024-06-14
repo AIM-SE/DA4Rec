@@ -1,0 +1,28 @@
+n_layers: 2
+n_heads: 2
+hidden_size: 256
+inner_size: 256
+hidden_dropout_prob: 0.2
+attn_dropout_prob: 0.2
+hidden_act: 'gelu'
+layer_norm_eps: 1e-12
+initializer_range: 0.02
+loss_type: 'CE'
+neg_sampling:
+
+tao: 0.2
+gamma: 0.7
+beta: 0.2
+n_views: 2
+augment_type: 'random'
+seq_representation_instancecl_type: 'concatenate'
+seq_representation_type: 'mean'
+warm_up_epoches: 0
+temperature: 1.0
+contrast_type: 'Hybrid'
+de_noise: False
+num_intent_clusters: '256'
+cf_weight: 0.1
+intent_cf_weight: 0.1
+rec_weight: 1.0
+#n_layers: 1

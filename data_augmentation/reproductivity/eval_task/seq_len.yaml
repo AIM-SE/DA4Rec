@@ -1,0 +1,19 @@
+0-10:
+  min_seq: 0
+  max_seq: 10
+
+10-20:
+  min_seq: 10
+  max_seq: 20
+
+20-30:
+  min_seq: 20
+  max_seq: 30
+
+30-40:
+  min_seq: 30
+  max_seq: 40
+
+40-50:
+  min_seq: 40
+  max_seq: 50

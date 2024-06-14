@@ -1,0 +1,135 @@
+# All valid data augmentation methods would be formulated through the Cartesian product of 'augment_operation', 'pos_sample_method', and 'item_sample_method'.
+# General settings
+augment_operation: ["subset-split", "crop", "insert", "delete", "mask", "reorder", "replace"]
+pos_sample_method: ["uniform"]
+item_sample_method: ["random"]
+
+start_pos: 0
+end_pos: -1
+
+# Others:
+need_item_sampling: ["insert", "replace", "Ti-insert", "Ti-replace"]
+
+# memory-based item sampling
+mb_model_name: "ItemCF_IUF"
+
+# cl4srec-operations
+eta: 0.6          # crop
+gamma: 0.3        # mask
+beta: 0.6         # reorder
+
+cl4srec_mask_value: 0
+
+# cl4srec-ablations
+cl4srec_mixed_aug_flag: False
+cl4srec_mixed_aug_weight:
+  Amazon_Beauty:
+    cl4srec_crop: 0
+    cl4srec_mask: 0
+    cl4srec_reorder: 0.0634
+    cl4srec_subset_split: 0.4683
+    cl4srec_insert: 0.3317
+    cl4srec_replace: 0
+    cl4srec_delete: 0.1366
+
+  Amazon_Sports:
+    cl4srec_crop: 0.1799
+    cl4srec_mask: 0
+    cl4srec_reorder: 0
+    cl4srec_subset_split: 0.3599
+    cl4srec_insert: 0.2145
+    cl4srec_replace: 0
+    cl4srec_delete: 0.2457
+
+
+## Non-time-interval-aware method and time-interval-aware method shares the same configuration
+
+## Crop
+crop_nums: 2              # (int) the size of cropping.
+crop_ratio: 0             # (float) the ratio of cropping.
+crop_n_times: 2          # (int) the number of cropping for each sequence
+
+## Insert
+insert_nums: 1              # (int) the number of inserted items
+insert_ratio: 0             # (float) the ratio of inserted items
+percent_no_augment: 0       # (float) the length of no augmentation at the end of the sequence
+insert_n_times: 2          # (int) the number of insertion for each sequence
+
+## Delete
+delete_nums: 1            # (int) the number of deleted items.
+delete_ratio: 0           # (float) the ratio of deleted items.
+delete_n_times: 2        # (int) the number of deletion for each sequence
+
+## Mask
+mask_nums: 1              # (int) the number of masked items.
+mask_ratio: 0             # (float) the ratio of masked items.
+mask_value: 0             # (int) the value of masked items.
+mask_n_times: 2          # (int) the number of mask for each sequence
+
+## Reorder
+reorder_nums: 2           # (int) the number of reordered items.
+reorder_ratio: 0          # (float) the ratio of reordered items.
+reorder_n_times: 2       # (int) the number of reorder for each sequence
+
+## Replace
+replace_nums: 1           # (int) the number of replaced items.
+replace_ratio: 0          # (float) the ratio of replaced items.
+replace_n_times: 2       # (int) the number of replacement for each sequence
+
+## Subset split
+subset_split_n_times: 2  # (int) the number of subset split for each sequence
+dropout_prob: 0.25        # (float) the probability that interaction is being dropped out.
+
+## Slide window
+window_length: 5          #
+
+## Slide window (recbole version)
+recbole_sw_length: 50        # Amazon_Beauty, Amazon_Sports, yelp - 50. ml-1m - 200
+
+## Ti-overall-settings
+ti_threshold: 5
+## Ti-crop
+crop_time_sort: "minimum"     # (str, choice in ["maximum", "minimum"]) choose the candidate subsequence in a descending/ascending order according to its time interval variance.
+ti_crop_n_times: 1            # (int) the number of Ti-crop
+## Ti-delete [deprecated]
+delete_time_sort: "minimum"   # (str, choice in ["maximum", "minimum"]) choose the deletion position that has largest/smallest time interval
+ti_delete_n_times: 1          # (int)
+## Ti-insert
+insert_time_sort: "maximum"   # (str, choice in ["maximum", "minimum"]) choose the insert position that has largest/smallest time interval
+ti_insert_n_times: 1          # (int)
+## Ti-mask
+mask_time_sort: "minimum"     # (str, choice in ["maximum", "minimum"]) choose the mask position that has largest/smallest time interval
+ti_mask_n_times: 1            # (int)
+## Ti-reorder
+sub_seq_length: 5             # (int) the length of the cropped subsequence
+reorder_time_sort: "minimum"  # (str, choice in ["maximum", "minimum"]) see 'crop_time_sort'
+## Ti-replace
+replace_time_sort: "minimum"  # (str, choice in ["maximum", "minimum"]) see 'mask_time_sort'
+ti_replace_n_times: 1         # (int)
+
+## Similar-Item-Sampling [not implemented yet]
+## Note: It may be revised in the future.
+item_embeddings: "xxx.embeddings"   # the path of the pre-computed item embedding file.
+target_item: "X"                    # the item that is being used to compute the similarity.
+op: "inner_product"                 # the similarity measurement function with binary operators.
+
+# online
+online_dict_path: "configs/config_a_online_aug.yaml"
+
+# Additional tasks for benchmark
+unique_task: ["CoSeRec", "CL4SRec", "ICLRec"]
+
+# inject to model config
+# ablation_task_config: ~
+ablation_task_config: ~
+#  CL4SRec: ["all_enabled", "vanilla", "only_crop", "only_mask", "only_reorder", "only_insert", "only_delete", "only_replace", "only_subset_split"]
+
+# Model's settings.
+models: ["SASRec", "CL4SRec", "ICLRec", "CoSeRec"]
+config_path: "reproductivity/configs"
+model_config:
+  SASRec: "config_m_SASRec.yaml"
+  CL4SRec: "config_m_CL4SRec.yaml"
+  ICLRec: "config_m_ICLRec.yaml"
+  CoSeRec: "config_m_CoSeRec.yaml"
+

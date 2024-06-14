@@ -1,0 +1,4 @@
+hidden_size choice [32, 64, 128, 256]
+inner_size choice [32, 64, 128, 256]
+hidden_dropout_prob choice [0.1, 0.2, 0.3, 0.4, 0.5]
+attn_dropout_prob choice [0.1, 0.2, 0.3, 0.4, 0.5]

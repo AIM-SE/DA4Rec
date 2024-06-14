@@ -1,0 +1,15 @@
+0-50:
+  min_pop: 0
+  max_pop: 50
+
+50-100:
+  min_pop: 50
+  max_pop: 100
+
+100-150:
+  min_pop: 100
+  max_pop: 150
+
+150-inf:
+  min_pop: 150
+  max_pop: 15000000
