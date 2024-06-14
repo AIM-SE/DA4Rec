@@ -1,0 +1,36 @@
+
+pipeline_name: DefaultPipeline
+
+skip_prob: 0.25
+
+# Choice in ["uniform"]
+pos_sample_method: "uniform"
+
+# Choice in ["random", "memorybased"]
+item_sample_method: "memorybased"
+
+# memory-based item sampling
+mb_model_name: "ItemCF_IUF"
+
+# insert
+insert_items: 2
+insert_times: 1
+
+# replace
+replace_items: 2
+replace_times: 1
+
+# mask
+mask_items: 2
+mask_times: 1
+
+# delete
+delete_items: 2
+delete_times: 1
+
+# subset split
+subset_times: 1
+dropout_prob: 0.25
+
+lower_bound: 5
+upper_bound: 21
