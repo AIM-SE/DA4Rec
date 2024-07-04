@@ -17,10 +17,10 @@ from recbole.utils import (
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--model", help="baseline model", type=str, default="SASRec", help="name of models")
+    parser.add_argument("--model", help="model name", type=str, default="SASRec")
     parser.add_argument("--dataset_path", help="path to directory of datasets", type=str, default="../dataset")
     parser.add_argument("--dataset", help="dataset name", type=str, default="Amazon_Beauty")
-    # parser.add_argument("--on_the_fly", action="store_true", default=False)
+    parser.add_argument("--on_the_fly", action="store_true", default=False)
     parser.add_argument("--aug_base", help="base augmentation method", type=str, default=None)
     parser.add_argument("--cold_start_ratio", help="cold-start sampling ratio", type=float, default=1)
     parser.add_argument("--seed", help="random seed", type=int, default=42)
